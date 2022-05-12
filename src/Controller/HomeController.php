@@ -8,20 +8,23 @@ class HomeController extends AbstractController
 {
     public function index(): string
     {
-        $errors = [];
-        $api = new Client();
-        if(isset($_GET['url'])) {
-            $response = $api->getSite($_GET['url']);
-//            foreach ($response as $index => $value) {
-//
-//            }
-        } else {
-            $error['url'] = 'input something';
-        }
 
         var_dump($_GET);
-        var_dump($response);
-        return $this->twig->render('Home/index.html.twig', [
+        return $this->twig->render('Home/index.html.twig');
+    }
+
+    public function show(): string
+    {
+        $errors = [];
+        $api = new Client();
+
+        if(isset($_GET['url'])) {
+            $response = $api->getSite($_GET['url']);
+        } else {
+            $errors['url'] = 'input something';
+        }
+
+        return $this->twig->render('Home/test.html.twig', [
             'errors' => $errors,
             'response' => $response
         ]);

@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Api;
+
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -24,5 +26,4 @@ class Client
         ]);
         return $response->toArray();
     }
-
 }
