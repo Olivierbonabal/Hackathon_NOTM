@@ -2,13 +2,13 @@
 
 namespace App\Controller;
 
+use App\Api\Client;
+
 class HomeController extends AbstractController
 {
-    /**
-     * Display home page
-     */
     public function index(): string
     {
-        return $this->twig->render('Home/index.html.twig');
+        $api = new Client();
+        //print_r($api->getFruitsByName('Agneau'));die;
+        print_r($api->getValues('Nom_du_Produit_en_Français'));
     }
-}
