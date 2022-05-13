@@ -9,7 +9,7 @@ class HomeController extends AbstractController
     public function index(): string
     {
 
-        var_dump($_GET);
+        //var_dump($_GET);
         return $this->twig->render('Home/index.html.twig');
     }
 
@@ -18,7 +18,7 @@ class HomeController extends AbstractController
         $errors = [];
         $api = new Client();
 
-        if(isset($_GET['url'])) {
+        if (isset($_GET['url'])) {
             $response = $api->getSite($_GET['url']);
         } else {
             $errors['url'] = 'input something';

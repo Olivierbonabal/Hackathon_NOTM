@@ -4,9 +4,10 @@ namespace App\Model;
 
 use Symfony\Component\HttpClient\HttpClient;
 
-class BioSwaggerManager {
-
-    public function getAll(): array {
+class BioSwaggerManager
+{
+    public function getAll(): array
+    {
 
         $statusCode = $response->getStatusCode();
         $contentType = $response->getHeaders()['content-type'][0];
