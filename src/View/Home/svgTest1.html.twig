@@ -1,0 +1,77 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+
+    {% if response.cleanerThan > 0.60 %}
+        <!-- The good place -->
+       <div class="row text-center">
+            <div class="align-items-center text-center">
+                <div class="card d-flex justify-content-center">
+                    <p class="h1 text-black mt-5" style="font-weight: bold;">Well done !</p>
+
+                <div class="d-flex justify-content-start" >
+                    <p class="h6 text-black mt-3"> The website you request is :
+                        <a href="{{ response.url }}">{{ response.url }}</a>
+                    </p>
+                </div>
+            </div>
+                <div class="d-flex justify-content-center">
+                    <div class="card row mt-5 d-flex justify-content-center" style="width: 60%;">
+                        <p class="h4 mt-5 text-black ">Congratulation the website is cleaner than {{ 100 * response.cleanerThan }} % of web pages tested.</p>
+                        <br>
+                        <p class="h4 text-black"> {{ (stats.grams * stats.litres)|number_format(2, '.', ',') }}g of CO2 is produced every time someone visits this web page.</p>
+                        <br>
+                        <p class="text-black mt-3"> We'll save you a place in paradise with lots of responsible people like you.</p>
+                        <a href="javascript:history.go(-1)">Retour</a>
+                    </div>
+            </div>
+        </div>
+        {% else %}
+           <!-- The bad place -->
+            <div class="row text-center">
+            <div class="align-items-center text-center">
+                <div class="align-items-center text-center">
+                    <p class="h1 text-black mt-5">Oh Fock !</p>
+                    <p class="h2 text-black mt-5"> The website you request is : {{ response.url }}</p>
+                    <p class="h2 text-black">Your web site is dirtier than {{ (1 - response.cleanerThan) * 100 }} % of web pages tested.</h4>
+                                <br>
+                    <p class="h3 text-black"> {{ (stats.grams * stats.litres)|number_format(2, '.', ',') }}g of CO2 is produced every time someone visits this web page.
+                    </p>
+                    <br>
+                    <h3 class="text-white bbq"> Burn in hell motherfucker !!!!!! </h3>
+                    <a href="javascript:history.go(-1)">Retour</a>
+                </div>
+            </div>
+                    {% endif %}
+
+            </div>
+        </div>
+{% endblock %}
+
+{% block javascript %}
+
+{% if response.cleanerThan > 0.60 %}
+<script src="confetti.js"></script>
+    <script>
+
+        const start = () => {
+            setTimeout(function() {
+                confetti.start()
+            }, 1000);
+        };
+
+
+        const stop = () => {
+            setTimeout(function() {
+                confetti.stop()
+            }, 5000);
+        };
+
+        start();
+        stop();
+    </script>
+    <script type="text/javascript" src="/assets/script/script.js"></script>
+
+{% endif %}
+
+{% endblock %}

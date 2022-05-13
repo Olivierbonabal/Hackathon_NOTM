@@ -1,5 +1,71 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-{{ dump(response) }}
+
+    {% if response.cleanerThan > 0.60 %}
+       <div class="row text-center">
+        <div class="paradis"
+             style="background-image: url('https://www.dansnoscoeurs.fr/media/cache/cover_xs_max/uploads/cms/f17622950353cb2afd208a05c9b9f2ed9b3076aa.jpg');
+            height: 100vh">
+            <div class="align-items-center text-center">
+                <p class="h1 text-black mt-5" style="font-weight: bold;">Well done !</h1>
+                <p class="h2 text-black mt-5"> The website you request is : {{ response.url }}</h2>
+                <p class="h2 text-black ">The website is cleaner than {{ 100 * response.cleanerThan }} % of web pages tested.</h4>
+                <br>
+                <p class="h3 text-black"> {{ (stats.grams * stats.litres)|number_format(2, '.', ',') }}g of CO2 is produced every time someone visits this web page.
+                </p>
+                <br>
+                <h3 class="text-black"> We'll save you a place in paradise with lots of responsible people like you.</h3>
+                <a href="javascript:history.go(-1)">Retour</a>
+            </div>
+        </div>
+        {% else %}
+        <div class="row text-center">
+            <div class="enfer"
+                 style="background-image: url('https://photos.tf1.fr/1920/1080/cover-showpage-13367e-ee37f3-0@1x.jpg');
+                height: 100vh">
+                <div class="align-items-center text-center">
+                    <p class="h1 text-white mt-5">Oh Fock !</p>
+                    <p class="h2 text-white mt-5"> The website you request is : {{ response.url }}</p>
+                    <p class="h2 text-white">Your web site is dirtier than {{ (1 - response.cleanerThan) * 100 }} % of web pages tested.</h4>
+                                <br>
+                    <p class="h3 text-white"> {{ (stats.grams * stats.litres)|number_format(2, '.', ',') }}g of CO2 is produced every time someone visits this web page.
+                    </p>
+                    <br>
+                    <h3 class="text-white bbq"> Burn in hell motherfucker !!!!!! </h3>
+                    <a href="javascript:history.go(-1)">Retour</a>
+                </div>
+            </div>
+                    {% endif %}
+
+            </div>
+        </div>
+{% endblock %}
+
+{% block javascript %}
+
+{% if response.cleanerThan > 0.60 %}
+<script src="confetti.js"></script>
+    <script>
+
+        const start = () => {
+            setTimeout(function() {
+                confetti.start()
+            }, 1000);
+        };
+
+
+        const stop = () => {
+            setTimeout(function() {
+                confetti.stop()
+            }, 5000);
+        };
+
+        start();
+        stop();
+    </script>
+    <script type="text/javascript" src="/assets/script/script.js"></script>
+
+{% endif %}
+
 {% endblock %}

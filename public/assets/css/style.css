@@ -1,0 +1,16 @@
+.paradis {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.bbq {
+    font-size: 5px;
+    transition-property: font-size;
+    transition-duration: 8s;
+    transition-delay: 0s;
+}
+
+.bbq:hover {
+    font-size: 100px;
+}
